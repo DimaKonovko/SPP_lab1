@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C0FBDEBB-F64C-41EF-B337-8F0BC141A304}</ProjectGuid>
+    <ProjectGuid>{F847F180-16EF-42CB-8853-C65E7FEAE685}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Tracer</RootNamespace>
-    <AssemblyName>Tracer</AssemblyName>
+    <RootNamespace>TracerApp</RootNamespace>
+    <AssemblyName>TracerApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
