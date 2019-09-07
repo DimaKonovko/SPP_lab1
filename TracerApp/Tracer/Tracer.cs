@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tracer
+namespace TracerLib
 {
-    class Tracer : ITracer
+    public class Tracer : ITracer
     {
-        private DateTime StartTime { get; set; }
-        private DateTime StopTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime StopTime { get; set; }
         public TraceResult GetTraceResult()
         {
             throw new NotImplementedException();
