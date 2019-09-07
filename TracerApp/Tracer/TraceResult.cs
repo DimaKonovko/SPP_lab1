@@ -10,6 +10,6 @@ namespace Tracer
     {
         public string MethodName;
         public string ClassName;
-        DateTime MethodInvocationTime;
+        public DateTime MethodInvocationTime;
     }
 }
