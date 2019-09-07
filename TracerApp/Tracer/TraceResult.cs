@@ -8,5 +8,8 @@ namespace Tracer
 {
     public class TraceResult
     {
+        public string MethodName;
+        public string ClassName;
+        DateTime MethodInvocationTime;
     }
 }
