@@ -8,8 +8,8 @@ namespace TracerLib
 {
     public class TraceResult
     {
-        public string MethodName;
-        public string ClassName;
-        public DateTime MethodInvocationTime;
+        public string callerName;
+        public string callerType;
+        public TimeSpan invocationTime;
     }
 }
