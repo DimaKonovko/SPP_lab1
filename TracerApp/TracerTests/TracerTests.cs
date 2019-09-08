@@ -94,5 +94,21 @@ namespace TracerTests
 
             Assert.AreEqual(ex.Message, exMsg);
         }
+
+        [TestMethod]
+        public void GetTraceResult_should_retern_TraceResult_obj()
+        {
+            Tracer tracer = new Tracer();
+            StackFrame sf = new StackFrame(0);
+
+            tracer.StartTrace();
+            Thread.Sleep(1000); // Method invocation
+            tracer.StopTrace();
+            TraceResult tr = tracer.GetTraceResult();
+
+            Assert.IsTrue(tr.invocationTime.TotalSeconds > 0);
+            Assert.AreEqual(tr.callerName, sf.GetMethod().Name);
+            Assert.AreEqual(tr.callerType, sf.GetMethod().DeclaringType.Name);
+        }
     }
 }

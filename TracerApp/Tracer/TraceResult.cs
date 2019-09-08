@@ -11,5 +11,6 @@ namespace TracerLib
         public string callerName;
         public string callerType;
         public TimeSpan invocationTime;
+        //public List<TraceResult> child
     }
 }
