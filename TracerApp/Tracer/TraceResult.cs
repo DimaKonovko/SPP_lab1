@@ -8,9 +8,11 @@ namespace TracerLib
 {
     public class TraceResult
     {
-        public string callerName;
-        public string callerType;
-        public TimeSpan invocationTime;
-        //public List<TraceResult> child
+        public Stack<TraceResultItem> ItemsStack { get; private set; }
+
+        public TraceResult()
+        {
+            this.ItemsStack = new Stack<TraceResultItem>();
+        }
     }
 }

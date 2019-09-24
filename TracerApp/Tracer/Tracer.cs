@@ -11,47 +11,35 @@ namespace TracerLib
 {
     public class Tracer : ITracer
     {
-        public DateTime StartTime { get; set; }
-        public DateTime StopTime { get; set; }
-        public TraceResult TraceRes;
+        public TraceResult TraceResult;
+
+        public int Depth { get; set; }
 
         public Tracer()
         {
-            this.TraceRes = new TraceResult();
-        }
-
-        public TraceResult GetTraceResult()
-        {
-            if (StopTime == default(DateTime))
-            {
-                throw new Exception("StopTime is not initialized");
-            }
-            if (StartTime == default(DateTime))
-            {
-                throw new Exception("StartTime is not initialized");
-            }
-
-            int comparisonResult = StopTime.CompareTo(StartTime);
-            if (comparisonResult == -1)
-            {
-                throw new Exception("StopTime is earlier than StartTime");
-            }
-
-            this.TraceRes.invocationTime = this.StopTime - this.StartTime;
-            return TraceRes;
+            this.TraceResult = new TraceResult();
+            this.Depth = 0;
         }
 
         public void StartTrace()
         {
             StackFrame sf = new StackFrame(1);
-            this.TraceRes.callerName = sf.GetMethod().Name;
-            this.TraceRes.callerType = sf.GetMethod().DeclaringType.Name;
-            this.StartTime = DateTime.Now;
+            string methodName = sf.GetMethod().Name;
+            string className = sf.GetMethod().DeclaringType.Name;
+          
+            TraceResultItem item = new TraceResultItem(methodName, className, this.Depth);
+            this.TraceResult.ItemsStack.Push(item);
+            this.Depth++;
         }
 
         public void StopTrace()
         {
-            this.StopTime = DateTime.Now;
+            this.Depth--;
+        }
+
+        public TraceResult GetTraceResult()
+        {
+            return this.TraceResult;
         }
     }
 }
