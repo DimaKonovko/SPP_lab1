@@ -16,9 +16,9 @@ namespace TracerLib
             PathToSave = pathToSave;
         }
 
-        public void Perform()
+        public string Perform()
         {
-
+            return "";
         }
     }
 }

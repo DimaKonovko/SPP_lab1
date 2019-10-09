@@ -14,5 +14,10 @@ namespace TracerLib
         {
             this.ItemsStack = new Stack<TraceResultItem>();
         }
+
+        public void ReversItemsStack()
+        {
+            this.ItemsStack = new Stack<TraceResultItem>(this.ItemsStack);
+        }
     }
 }

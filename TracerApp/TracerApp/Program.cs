@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,11 +20,29 @@ namespace TracerApp
 
         public void Perform()
         {
-            Tracer = new Tracer();
+            this.Tracer = new Tracer();
 
             TestMethod_1();
             TestMethod_2();
+ 
+            SaveToXml();
+            SaveToJson();
+
             Console.ReadLine();
+        }
+
+        public void SaveToXml()
+        {
+            string pathToSave = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\Save\\TraseResult.xml");
+            XmlSerialize xmlSerialize = new XmlSerialize(this.Tracer.GetTraceResult(), pathToSave);
+
+            String xmlAsStr = xmlSerialize.Perform();
+            Console.WriteLine(xmlAsStr);
+        }
+
+        public void SaveToJson()
+        {
+
         }
 
         public void TestMethod_1()
@@ -31,20 +50,36 @@ namespace TracerApp
             this.Tracer.StartTrace();
             TestMethod_1_1();
             TestMethod_1_2();
+            TestMethod_1_3();
+            TestMethod_1_4();
             this.Tracer.StopTrace();            
         }
 
         public void TestMethod_1_1()
         {
             this.Tracer.StartTrace();
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             this.Tracer.StopTrace();
         }
 
         public void TestMethod_1_2()
         {
             this.Tracer.StartTrace();
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
+            this.Tracer.StopTrace();
+        }
+
+        public void TestMethod_1_3()
+        {
+            this.Tracer.StartTrace();
+            Thread.Sleep(100);
+            this.Tracer.StopTrace();
+        }
+
+        public void TestMethod_1_4()
+        {
+            this.Tracer.StartTrace();
+            Thread.Sleep(100);
             this.Tracer.StopTrace();
         }
 
@@ -58,14 +93,14 @@ namespace TracerApp
         public void TestMethod_2_1()
         {
             this.Tracer.StartTrace();
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             TestMethod_2_1_1();
             this.Tracer.StopTrace();
         }
         public void TestMethod_2_1_1()
         {
             this.Tracer.StartTrace();
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             this.Tracer.StopTrace();
         }
     }

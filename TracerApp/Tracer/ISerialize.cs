@@ -8,6 +8,6 @@ namespace TracerLib
 {
     public interface ISerialize
     {
-        void Perform();
+        string Perform();
     }
 }
