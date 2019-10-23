@@ -33,7 +33,7 @@ namespace TracerApp
 
         public void SaveToXml()
         {
-            string pathToSave = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\Save\\TraseResult.xml");
+            string pathToSave = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\Save\\XmlTraseResult.xml");
 
             FileStream fileStream = new FileStream(pathToSave, FileMode.Create);
             StreamWriter streamWriter = new StreamWriter(fileStream);
@@ -46,7 +46,15 @@ namespace TracerApp
 
         public void SaveToJson()
         {
+            string pathToSave = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\Save\\JsonTraseResult.json");
 
+            FileStream fileStream = new FileStream(pathToSave, FileMode.Create);
+            StreamWriter streamWriter = new StreamWriter(fileStream);
+            TracerResult tracerResult = this.Tracer.GetTraceResult();
+
+            JsonSerializer xmlSerializer = new JsonSerializer();
+            xmlSerializer.SaveTraceResult(streamWriter, tracerResult);
+            xmlSerializer.SaveTraceResult(Console.Out, tracerResult);
         }
 
         public void TestMethod_1()

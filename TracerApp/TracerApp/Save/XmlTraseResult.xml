@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TracerApp>
-  <Thread Id="1" Time="612ms">
+  <Thread Id="1" Time="613ms">
     <Method Name="TestMethod_1" Time="409ms" Class="Program">
       <Method Name="TestMethod_1_1" Time="106ms" Class="Program" />
       <Method Name="TestMethod_1_2" Time="100ms" Class="Program" />
-      <Method Name="TestMethod_1_3" Time="101ms" Class="Program" />
+      <Method Name="TestMethod_1_3" Time="100ms" Class="Program" />
       <Method Name="TestMethod_1_4" Time="100ms" Class="Program" />
     </Method>
-    <Method Name="TestMethod_2" Time="202ms" Class="Program">
-      <Method Name="TestMethod_2_1" Time="202ms" Class="Program">
-        <Method Name="TestMethod_2_1_1" Time="101ms" Class="Program" />
+    <Method Name="TestMethod_2" Time="203ms" Class="Program">
+      <Method Name="TestMethod_2_1" Time="203ms" Class="Program">
+        <Method Name="TestMethod_2_1_1" Time="100ms" Class="Program" />
       </Method>
     </Method>
   </Thread>

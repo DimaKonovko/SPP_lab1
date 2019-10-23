@@ -14,12 +14,13 @@ namespace TracerLib
         public void SaveTraceResult(TextWriter textWriter, TracerResult traceResult)
         {
             XDocument doc = new XDocument(
-                new XElement("TracerApp", from threadTracer in traceResult.dThreadTracerResults.Values
-                                          select SaveThread(threadTracer)
+                new XElement("TracerApp", from threadTracerResult in traceResult.dThreadTracerResults.Values
+                                          select SaveThread(threadTracerResult)
                 ));
 
             using (XmlTextWriter xmlWriter = new XmlTextWriter(textWriter))
             {
+                xmlWriter.Formatting = Formatting.Indented;
                 doc.WriteTo(xmlWriter);
             }
         }
@@ -29,8 +30,8 @@ namespace TracerLib
             return new XElement("Thread",
                 new XAttribute("Id", threadTracer.Id),
                 new XAttribute("Time", threadTracer.Time.Milliseconds + "ms"),
-                from methodResult in threadTracer.lFirstLvlMethodTracersResult
-                select SaveMethod(methodResult)
+                from methodTracerResult in threadTracer.lFirstLvlMethodTracersResult
+                select SaveMethod(methodTracerResult)
                 );
         }
 
