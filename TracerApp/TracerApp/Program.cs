@@ -34,10 +34,14 @@ namespace TracerApp
         public void SaveToXml()
         {
             string pathToSave = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\Save\\TraseResult.xml");
-            XmlSerialize xmlSerialize = new XmlSerialize(this.Tracer.GetTraceResult(), pathToSave);
 
-            String xmlAsStr = xmlSerialize.Perform();
-            Console.WriteLine(xmlAsStr);
+            FileStream fileStream = new FileStream(pathToSave, FileMode.Create);
+            StreamWriter streamWriter = new StreamWriter(fileStream);
+            TracerResult tracerResult = this.Tracer.GetTraceResult();
+
+            XmlSerializer xmlSerializer = new XmlSerializer();
+            xmlSerializer.SaveTraceResult(streamWriter, tracerResult);
+            xmlSerializer.SaveTraceResult(Console.Out, tracerResult);
         }
 
         public void SaveToJson()
