@@ -19,7 +19,6 @@ namespace TracerLib
 
         public Tracer()
         {
-            tracerResult = new TracerResult();
             cdThreadTracers = new ConcurrentDictionary<int, ThreadTracer>();
         }
 
@@ -37,7 +36,8 @@ namespace TracerLib
 
         public TracerResult GetTraceResult()
         {
-            throw new NotImplementedException();
+            tracerResult = new TracerResult(cdThreadTracers);
+            return tracerResult;
         }
 
         private ThreadTracer AddOrGetThreadTracer(int id)

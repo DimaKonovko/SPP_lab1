@@ -9,14 +9,14 @@ namespace TracerLib
     public class ThreadTracer
     {
         public int Id { get; private set; }
-        public List<MethodTracer> lMethodTracers { get; private set; }
+        public List<MethodTracer> lFirstLvlMethodTracers { get; private set; }
         private Stack<MethodTracer> sUnstoppedMethodTracers;
         public TimeSpan Time { get; private set; }
 
         public ThreadTracer(int id)
         {
             Id = id;
-            lMethodTracers = new List<MethodTracer>();
+            lFirstLvlMethodTracers = new List<MethodTracer>();
             sUnstoppedMethodTracers = new Stack<MethodTracer>();
             Time = new TimeSpan();
         }
@@ -28,7 +28,7 @@ namespace TracerLib
             if (sUnstoppedMethodTracers.Count > 0)
             {
                 MethodTracer lastUnstoppedMethodTracer = sUnstoppedMethodTracers.Peek();
-                lastUnstoppedMethodTracer.InnerMethods.Add(methodTracer);
+                lastUnstoppedMethodTracer.lInnerMethodTracers.Add(methodTracer);
             }
             sUnstoppedMethodTracers.Push(methodTracer);
             methodTracer.StartTrace();
@@ -40,7 +40,7 @@ namespace TracerLib
             lastUnstoppedMethodTracer.StopTrace();
             if (!sUnstoppedMethodTracers.Any())
             {
-                lMethodTracers.Add(lastUnstoppedMethodTracer);
+                lFirstLvlMethodTracers.Add(lastUnstoppedMethodTracer);
                 Time += lastUnstoppedMethodTracer.Time;
             }
         }
