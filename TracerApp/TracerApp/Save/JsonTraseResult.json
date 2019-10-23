@@ -1,0 +1,56 @@
+{
+  "threads": [
+    {
+      "id": 1,
+      "time": "613ms",
+      "methods": [
+        {
+          "name": "TestMethod_1",
+          "class": "Program",
+          "time": "409ms",
+          "methods": [
+            {
+              "name": "TestMethod_1_1",
+              "class": "Program",
+              "time": "106ms"
+            },
+            {
+              "name": "TestMethod_1_2",
+              "class": "Program",
+              "time": "100ms"
+            },
+            {
+              "name": "TestMethod_1_3",
+              "class": "Program",
+              "time": "100ms"
+            },
+            {
+              "name": "TestMethod_1_4",
+              "class": "Program",
+              "time": "100ms"
+            }
+          ]
+        },
+        {
+          "name": "TestMethod_2",
+          "class": "Program",
+          "time": "203ms",
+          "methods": [
+            {
+              "name": "TestMethod_2_1",
+              "class": "Program",
+              "time": "203ms",
+              "methods": [
+                {
+                  "name": "TestMethod_2_1_1",
+                  "class": "Program",
+                  "time": "100ms"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

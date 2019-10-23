@@ -1,8 +1,0 @@
-<root>
-  <method name="TestMethod_1" class="Program" depth="0">
-    <method name="TestMethod_1_1" class="Program" depth="1" />
-    <method name="TestMethod_1_2" class="Program" depth="1" />
-    <method name="TestMethod_1_3" class="Program" depth="1" />
-    <method name="TestMethod_1_1" class="Program" depth="1" />
-  </method>
-</root>
