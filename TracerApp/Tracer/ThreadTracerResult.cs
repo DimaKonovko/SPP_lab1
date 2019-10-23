@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TracerLib
 {
-    public interface ISerialize
+    class ThreadTracerResult
     {
-        string Perform();
+
     }
 }
