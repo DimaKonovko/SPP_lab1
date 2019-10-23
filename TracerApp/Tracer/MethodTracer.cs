@@ -12,8 +12,8 @@ namespace TracerLib
         public string MethodName { get; private set; }
         public string ClassName { get; private set; }
         public TimeSpan Time { get; private set; }
-        public List<MethodTracer> InnerMethods { get; private set; }
         private Stopwatch StopWatch;
+        public List<MethodTracer> lInnerMethodTracers { get; private set; }
 
         public MethodTracer()
         {
@@ -23,6 +23,7 @@ namespace TracerLib
 
             Time = new TimeSpan();
             StopWatch = new Stopwatch();
+            lInnerMethodTracers = new List<MethodTracer>();
         }
 
         public void StartTrace()
