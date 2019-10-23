@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace TracerLib
 {
-    public interface ITracer
+    class MethodTracerResult
     {
-        void StartTrace();
 
-        void StopTrace();
-
-        TracerResult GetTraceResult();
     }
 }

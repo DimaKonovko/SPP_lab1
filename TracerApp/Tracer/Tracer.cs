@@ -1,45 +1,56 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TracerLib
 {
     public class Tracer : ITracer
     {
-        public TraceResult TraceResult;
-
-        public int Depth { get; set; }
+        TracerResult tracerResult { get; set; }
+        private ConcurrentDictionary<int, ThreadTracer> cdThreadTracers;
+        static private object locker = new object();
 
         public Tracer()
         {
-            this.TraceResult = new TraceResult();
-            this.Depth = 0;
+            tracerResult = new TracerResult();
+            cdThreadTracers = new ConcurrentDictionary<int, ThreadTracer>();
         }
 
         public void StartTrace()
         {
-            StackFrame sf = new StackFrame(1);
-            string methodName = sf.GetMethod().Name;
-            string className = sf.GetMethod().DeclaringType.Name;
-          
-            TraceResultItem item = new TraceResultItem(methodName, className, this.Depth);
-            this.TraceResult.ItemsStack.Push(item);
-            this.Depth++;
+            ThreadTracer curThreadTracer = AddOrGetThreadTracer(Thread.CurrentThread.ManagedThreadId);
+            curThreadTracer.StartTrace();
         }
 
         public void StopTrace()
         {
-            this.Depth--;
+            ThreadTracer currThreadTracer = AddOrGetThreadTracer(Thread.CurrentThread.ManagedThreadId);
+            currThreadTracer.StopTrace();
         }
 
-        public TraceResult GetTraceResult()
+        public TracerResult GetTraceResult()
         {
-            return this.TraceResult;
+            throw new NotImplementedException();
+        }
+
+        private ThreadTracer AddOrGetThreadTracer(int id)
+        {
+            lock(locker)
+            {
+                if (!cdThreadTracers.TryGetValue(id, out ThreadTracer threadTracer))
+                {
+                    threadTracer = new ThreadTracer(id);
+                    cdThreadTracers[id] = threadTracer;
+                }
+                return threadTracer;
+            }
         }
     }
 }
